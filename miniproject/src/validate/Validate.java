@@ -21,10 +21,10 @@ public class Validate {
                case 2:
                   return 2;
                default:
-                  System.out.println("Lựa chọn không hợp lệ, mời chọn lại quyền sử dụng : 1: ADMIN 2: USER");
+                  System.err.println("Lựa chọn không hợp lệ, mời chọn lại quyền sử dụng : 1: ADMIN 2: USER");
             }
          } catch (NumberFormatException e) {
-            System.out.println("Lựa chọn không hợp lệ; mời chọn lại quyền sử dụng bằng cách nhập số");
+            System.err.println("Lựa chọn không hợp lệ; mời chọn lại quyền sử dụng bằng cách nhập số");
          }
       } while (true);
    }
@@ -38,10 +38,10 @@ public class Validate {
             if (userNameInput.length() > 6) {
                return userNameInput;
             } else {
-               System.out.println("Tên tài khoản phải lớn hơn 6 kí tự, xin mời nhập lại");
+               System.err.println("Tên tài khoản phải lớn hơn 6 kí tự, xin mời nhập lại");
             }
          } else {
-            System.out.println("Tên không được để trống, xin mời nhập tên tài khoản");
+            System.err.println("Tên không được để trống, xin mời nhập tên tài khoản");
          }
       }while (true);
    }
@@ -55,14 +55,14 @@ public class Validate {
                if(!isUserNameExists(userNameInput)){
                   return userNameInput;
                }else {
-                  System.out.println("UserName đã có người sử dụng, vui lòng nhập lại");
+                  System.err.println("UserName đã có người sử dụng, vui lòng nhập lại");
                }
 
             } else {
-               System.out.println("Tên tài khoản phải lớn hơn 3 kí tự, xin mời nhập lại");
+               System.err.println("Tên tài khoản phải lớn hơn 3 kí tự, xin mời nhập lại");
             }
          } else {
-            System.out.println("Tên không được để trống, xin mời nhập tên tài khoản");
+            System.err.println("Tên không được để trống, xin mời nhập tên tài khoản");
          }
       }while (true);
    }
@@ -88,14 +88,14 @@ public class Validate {
                if (!isEmailExists(emailInput)) {
                   return emailInput;
                } else {
-                  System.out.println("Email đã được sử dụng, xin mời nhập lại");
+                  System.err.println("Email đã được sử dụng, xin mời nhập lại");
                }
             } else {
-               System.out.println("Email không đúng định dạng, xin mời nhập lại");
+               System.err.println("Email không đúng định dạng, xin mời nhập lại");
             }
 
          } else {
-            System.out.println("Email không được để trống");
+            System.err.println("Email không được để trống");
          }
       }while (true);
    }
@@ -129,11 +129,11 @@ public class Validate {
             if (checkRegexPassword(passInput)) {
                return passInput;
             } else {
-               System.out.println("Mật khẩu phải chứa ít nhất một chữ số, chữ in hoa và kí tự đặc biệt");
+               System.err.println("Mật khẩu phải chứa ít nhất một chữ số, chữ in hoa và kí tự đặc biệt");
             }
 
          } else {
-            System.out.println("Mật khẩu không được để trống");
+            System.err.println("Mật khẩu không được để trống");
          }
       }while (true);
    }
@@ -154,7 +154,7 @@ public class Validate {
          if (!AdressInput.isEmpty()) {
                return AdressInput;
          } else {
-            System.out.println("Tên không được để trống, xin mời nhập tên tài khoản");
+            System.err.println("Tên không được để trống, xin mời nhập tên tài khoản");
          }
       }while (true);
    }
@@ -170,14 +170,14 @@ public class Validate {
                if (!isPhoneExists(phoneInput)) {
                   return phoneInput;
                }else {
-                  System.out.println("Số điện thoại đã được sử dụng");
+                  System.err.println("Số điện thoại đã được sử dụng");
                }
             } else {
-               System.out.println("SĐT không đúng định dạng của số đt việt nam");
+               System.err.println("SĐT không đúng định dạng của số đt việt nam");
             }
 
          } else {
-            System.out.println("Số điện thoại không được để trống");
+            System.err.println("Số điện thoại không được để trống");
          }
       }while (true);
    }

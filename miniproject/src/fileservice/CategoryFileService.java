@@ -18,12 +18,13 @@ public class CategoryFileService {
         }
         this.catagories = catagoryList;
     }
-
+    // lấy ra một danh sách
     public List<Catagory> getAllCategory() {
         return catagories;
     }
 
 
+    // hàm nạp dữ liệu vào file
     public void saveToFileCategory(Catagory category) {
         if (findByIdCategory(category.getCatelogId()) == null) {
             catagories.add(category);

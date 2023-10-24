@@ -14,8 +14,14 @@ public class UserService {
     public static List<User> listedUsers = userFileService.getAllUser();
 
 
-    // Hiển thị danh sách người dùng
+    // Hiển thị danh sách người dùng đã sắp xếp theo tên
     public static void displayUserList() {
+        Collections.sort(listedUsers, new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                return o1.getUsername().compareTo(o2.getUsername());
+            }
+        });
         for (User user : listedUsers) {
             System.out.println(user);
         }
@@ -27,13 +33,19 @@ public class UserService {
         System.out.println("Nhập từ khoá tên bạn muốn tìm kiếm:");
         String username = scanner.nextLine();
         List<User> filteredUsers = new ArrayList<>();
+
         for (User user : listedUsers) {
             if (user.getUsername().toLowerCase().contains(username.toLowerCase())) {
                 filteredUsers.add(user);
             }
         }
-        for (User user : filteredUsers) {
-            System.out.println(user);
+        if (filteredUsers.isEmpty()) {
+            System.out.println("Không tìm thấy người dùng nào với tên người dùng chứa từ khoá: " + username);
+        } else {
+            System.out.println("Kết quả tìm kiếm:");
+            for (User user : filteredUsers) {
+                System.out.println(user);
+            }
         }
     }
 
@@ -50,19 +62,19 @@ public class UserService {
                     int statusInt = Integer.parseInt(scanner.nextLine());
                     user.setStatus(statusInt == 1 ? ACTIVE : BLOCK);
                     userFileService.saveToFile(user);
+                    System.out.println("Thay đổi trạng thái thành công!");
                 } catch (InputMismatchException | NumberFormatException e) {
-                    System.out.println("Nhập không đúng yêu cầu.");
+                    System.err.println("Nhập không đúng yêu cầu.");
                     changeUserStatus(scanner);
                 }
 
             } else {
-                System.out.println("Không thể thay đổi trạng thái người dùng này, hoặc người dùng không tồn tại");
-                changeUserStatus(scanner);
+                System.err.println("Không thể thay đổi trạng thái người dùng này, hoặc người dùng không tồn tại");
+
             }
 
-            System.out.println("Thay đổi trạng thái thành công!");
         } catch (InputMismatchException | NumberFormatException e) {
-            System.out.println("Nhập không đúng yêu cầu.");
+            System.err.println("Nhập không đúng yêu cầu.");
             changeUserStatus(scanner);
         }
 

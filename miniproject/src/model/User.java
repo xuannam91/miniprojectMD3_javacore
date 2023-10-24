@@ -1,7 +1,11 @@
 package model;
 
-import java.io.Serializable;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import static constant.Constant.Atc.ON;
 import static constant.Constant.Role.ADMIN;
 import static constant.Constant.Status.ACTIVE;
 
@@ -15,12 +19,14 @@ public class User implements Serializable {
     private String address;
     private String phone;
     private boolean status;
+    private boolean atc;
     private int role;
+    private List<CartItem> cart = new ArrayList<>();
 
     public User() {
     }
 
-    public User(int id, String username, String fullName, String email, String password, String address, String phone, boolean status, int role) {
+    public User(int id, String username, String fullName, String email, String password, String address, String phone, boolean status, boolean atc, int role, List<CartItem> cart) {
         this.id = id;
         this.username = username;
         this.fullName = fullName;
@@ -29,7 +35,9 @@ public class User implements Serializable {
         this.address = address;
         this.phone = phone;
         this.status = status;
+        this.atc = atc;
         this.role = role;
+        this.cart = cart;
     }
 
     public int getId() {
@@ -96,6 +104,14 @@ public class User implements Serializable {
         this.status = status;
     }
 
+    public boolean isAtc() {
+        return atc;
+    }
+
+    public void setAtc(boolean atc) {
+        this.atc = atc;
+    }
+
     public int getRole() {
         return role;
     }
@@ -104,17 +120,26 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    public List<CartItem> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<CartItem> cart) {
+        this.cart = cart;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("User{");
-        sb.append("id=").append(id);
-        sb.append(", username='").append(username).append('\'');
-        sb.append(", fullName='").append(fullName).append('\'');
-        sb.append(", email='").append(email).append('\'');
-        sb.append(", address='").append(address).append('\'');
-        sb.append(", phone='").append(phone).append('\'');
-        sb.append(", status=").append(status == ACTIVE ? "'ACTIVE'" : "'BLOCK'");
-        sb.append(", role=").append(role == ADMIN ? "'ADMIN'" : "'USER'");
+        sb.append("id: ").append(id);
+        sb.append(", username: '").append(username).append('\'');
+        sb.append(", fullName: '").append(fullName).append('\'');
+        sb.append(", email: '").append(email).append('\'');
+        sb.append(", address: '").append(address).append('\'');
+        sb.append(", phone: '").append(phone).append('\'');
+        sb.append(", status: ").append(status == ACTIVE ? "'ACTIVE'" : "'BLOCK'");
+        sb.append(", atc: ").append(atc == ON ? "'ON'" : "'OFF'");
+        sb.append(", role: ").append(role == ADMIN ? "'ADMIN'" : "'USER'");
         sb.append('}');
         return sb.toString();
     }
